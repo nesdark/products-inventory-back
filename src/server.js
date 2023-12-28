@@ -32,4 +32,6 @@ app.use((error, request, response, next) => {
 });
 
 const PORT = process.env.PORT || 7070;
+
+// 192.168.15.80
 app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));
