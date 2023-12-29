@@ -31,7 +31,7 @@ app.use((error, request, response, next) => {
     .json({ status: 'error', message: 'Internal Server Error' });
 });
 
-const PORT = process.env.PORT || 7070;
+const PORT = process.env.PORT || 6060;
 
 // 192.168.15.80
 app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));
