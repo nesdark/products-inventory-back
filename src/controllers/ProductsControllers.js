@@ -57,7 +57,7 @@ class ProductsControllers {
 
   async index(request, response) {
     let { title, returnAll } = request.query;
-    let products;
+    let products = '';
 
     const isCategory = await knex('products').whereLike(
       'products.category',
