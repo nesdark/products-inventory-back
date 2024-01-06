@@ -71,13 +71,11 @@ class ProductsControllers {
         .whereLike('products.category', `%${title}%`) // Tanto antes quanto depois, se houver title %%
         .orderBy('products.category')
         .orderBy('products.title');
-      console.log('Category');
     } else {
       products = await knex('products')
         .whereLike('products.title', `%${title}%`) // Tanto antes quanto depois, se houver title %%
         .orderBy('products.category')
         .orderBy('products.title');
-      console.log('title');
     }
 
     return response.json(products);
