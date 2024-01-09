@@ -11,7 +11,7 @@ const ensureAuthenticated = require('../middlewares/ensureAuthenticated');
 
 productsRoutes.get('/:id', productsControllers.show);
 productsRoutes.get('/', productsControllers.index);
-productsRoutes.put('/sell/:id', productsControllers.sell);
+productsRoutes.put('/sell', productsControllers.sell);
 
 productsRoutes.use(ensureAuthenticated);
 productsRoutes.use(verifyUserAuthorization('admin'));

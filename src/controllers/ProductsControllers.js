@@ -82,20 +82,21 @@ class ProductsControllers {
   }
 
   async sell(request, response) {
-    const { id } = request.params;
-    const { quantity } = request.query;
+    const { cart } = request.body;
 
-    const product = await knex('products').where({ id });
+    cart.forEach(async function (productSold) {
+      const product = await knex('products').where({ id: productSold.id });
 
-    const newQuantity = product[0].quantity - quantity;
+      const newQuantity = product[0].quantity - productSold.quantity;
 
-    if (newQuantity < 0) {
-      throw new AppError('No puedes vender mas de lo que tienes en estoque!');
-    }
+      if (newQuantity >= 0) {
+        await knex('products')
+          .where({ id: productSold.id })
+          .update({ quantity: newQuantity });
+      }
+    });
 
-    await knex('products').where({ id }).update({ quantity: newQuantity });
-
-    return response.json(product);
+    return response.json();
   }
 }
 
